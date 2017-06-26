@@ -37,6 +37,8 @@ create index IX_B2A61B55 on AssetEntries_AssetTags (tagId);
 create unique index IX_1E9D371D on AssetEntry (classNameId, classPK);
 create index IX_7306C60 on AssetEntry (companyId);
 create index IX_75D42FF9 on AssetEntry (expirationDate);
+create index IX_6418BB52 on AssetEntry (groupId, classNameId, publishDate, expirationDate);
+create index IX_82C4BEF6 on AssetEntry (groupId, classNameId, visible);
 create index IX_1EBA6821 on AssetEntry (groupId, classUuid[$COLUMN_LENGTH:75$]);
 create index IX_FEC4A201 on AssetEntry (layoutUuid[$COLUMN_LENGTH:75$]);
 create index IX_2E4E3885 on AssetEntry (publishDate);
@@ -208,7 +210,7 @@ create index IX_3B69160F on Groups_UserGroups (userGroupId);
 
 create index IX_6A925A4D on Image (size_);
 
-create index IX_C7FBC998 on Layout (companyId);
+create index IX_881EABCB on Layout (companyId, layoutPrototypeUuid[$COLUMN_LENGTH:75$]);
 create unique index IX_BC2C4231 on Layout (groupId, privateLayout, friendlyURL[$COLUMN_LENGTH:255$]);
 create unique index IX_7162C27C on Layout (groupId, privateLayout, layoutId);
 create index IX_7399B71E on Layout (groupId, privateLayout, parentLayoutId, priority);
@@ -216,6 +218,7 @@ create index IX_8CE8C0D9 on Layout (groupId, privateLayout, sourcePrototypeLayou
 create index IX_1A1B61D2 on Layout (groupId, privateLayout, type_[$COLUMN_LENGTH:75$]);
 create index IX_23922F7D on Layout (iconImageId);
 create index IX_B529BFD3 on Layout (layoutPrototypeUuid[$COLUMN_LENGTH:75$]);
+create index IX_3BC009C0 on Layout (privateLayout, iconImageId);
 create index IX_39A18ECC on Layout (sourcePrototypeLayoutUuid[$COLUMN_LENGTH:75$]);
 create index IX_2CE4BE84 on Layout (uuid_[$COLUMN_LENGTH:75$], companyId);
 create unique index IX_E118C537 on Layout (uuid_[$COLUMN_LENGTH:75$], groupId, privateLayout);
@@ -235,6 +238,7 @@ create index IX_63ED2532 on LayoutPrototype (uuid_[$COLUMN_LENGTH:75$], companyI
 
 create index IX_43E8286A on LayoutRevision (head, plid);
 create index IX_E10AC39 on LayoutRevision (layoutSetBranchId, head, plid);
+create index IX_38C5DF14 on LayoutRevision (layoutSetBranchId, layoutBranchId, head, plid);
 create index IX_13984800 on LayoutRevision (layoutSetBranchId, layoutBranchId, plid);
 create index IX_4A84AF43 on LayoutRevision (layoutSetBranchId, parentLayoutRevisionId, plid);
 create index IX_70DA9ECB on LayoutRevision (layoutSetBranchId, plid, status);
@@ -243,6 +247,7 @@ create index IX_8EC3D2BC on LayoutRevision (plid, status);
 
 create unique index IX_48550691 on LayoutSet (groupId, privateLayout);
 create index IX_72BBA8B7 on LayoutSet (layoutSetPrototypeUuid[$COLUMN_LENGTH:75$]);
+create index IX_1B698D9 on LayoutSet (privateLayout, logoId);
 
 create index IX_CCF0DA29 on LayoutSetBranch (groupId, privateLayout, master);
 create unique index IX_5FF18552 on LayoutSetBranch (groupId, privateLayout, name[$COLUMN_LENGTH:75$]);
