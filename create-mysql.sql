@@ -2506,7 +2506,7 @@ insert into ListType (listTypeId, name, type_) values (12020, 'public', 'com.lif
 insert into Counter (name, currentId) values ('com.liferay.counter.kernel.model.Counter', 20000);
 
 
-insert into Release_ (releaseId, createDate, modifiedDate, servletContextName, schemaVersion, buildNumber, verified) values (1, now(), now(), 'portal', '7.0.2', 7002, 0);
+insert into Release_ (releaseId, createDate, modifiedDate, servletContextName, schemaVersion, buildNumber, verified) values (1, now(), now(), 'portal', '7.0.3', 7003, 0);
 
 
 
@@ -2552,6 +2552,8 @@ create index IX_B2A61B55 on AssetEntries_AssetTags (tagId);
 create unique index IX_1E9D371D on AssetEntry (classNameId, classPK);
 create index IX_7306C60 on AssetEntry (companyId);
 create index IX_75D42FF9 on AssetEntry (expirationDate);
+create index IX_6418BB52 on AssetEntry (groupId, classNameId, publishDate, expirationDate);
+create index IX_82C4BEF6 on AssetEntry (groupId, classNameId, visible);
 create index IX_1EBA6821 on AssetEntry (groupId, classUuid);
 create index IX_FEC4A201 on AssetEntry (layoutUuid);
 create index IX_2E4E3885 on AssetEntry (publishDate);
@@ -2723,7 +2725,7 @@ create index IX_3B69160F on Groups_UserGroups (userGroupId);
 
 create index IX_6A925A4D on Image (size_);
 
-create index IX_C7FBC998 on Layout (companyId);
+create index IX_881EABCB on Layout (companyId, layoutPrototypeUuid);
 create unique index IX_BC2C4231 on Layout (groupId, privateLayout, friendlyURL);
 create unique index IX_7162C27C on Layout (groupId, privateLayout, layoutId);
 create index IX_7399B71E on Layout (groupId, privateLayout, parentLayoutId, priority);
@@ -2731,6 +2733,7 @@ create index IX_8CE8C0D9 on Layout (groupId, privateLayout, sourcePrototypeLayou
 create index IX_1A1B61D2 on Layout (groupId, privateLayout, type_);
 create index IX_23922F7D on Layout (iconImageId);
 create index IX_B529BFD3 on Layout (layoutPrototypeUuid);
+create index IX_3BC009C0 on Layout (privateLayout, iconImageId);
 create index IX_39A18ECC on Layout (sourcePrototypeLayoutUuid);
 create index IX_2CE4BE84 on Layout (uuid_, companyId);
 create unique index IX_E118C537 on Layout (uuid_, groupId, privateLayout);
@@ -2750,6 +2753,7 @@ create index IX_63ED2532 on LayoutPrototype (uuid_, companyId);
 
 create index IX_43E8286A on LayoutRevision (head, plid);
 create index IX_E10AC39 on LayoutRevision (layoutSetBranchId, head, plid);
+create index IX_38C5DF14 on LayoutRevision (layoutSetBranchId, layoutBranchId, head, plid);
 create index IX_13984800 on LayoutRevision (layoutSetBranchId, layoutBranchId, plid);
 create index IX_4A84AF43 on LayoutRevision (layoutSetBranchId, parentLayoutRevisionId, plid);
 create index IX_70DA9ECB on LayoutRevision (layoutSetBranchId, plid, status);
@@ -2758,6 +2762,7 @@ create index IX_8EC3D2BC on LayoutRevision (plid, status);
 
 create unique index IX_48550691 on LayoutSet (groupId, privateLayout);
 create index IX_72BBA8B7 on LayoutSet (layoutSetPrototypeUuid);
+create index IX_1B698D9 on LayoutSet (privateLayout, logoId);
 
 create index IX_CCF0DA29 on LayoutSetBranch (groupId, privateLayout, master);
 create unique index IX_5FF18552 on LayoutSetBranch (groupId, privateLayout, name);
